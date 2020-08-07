@@ -27,7 +27,7 @@ function App() {
     );
     setState((prev) => ({ ...prev, firstUser: firstUser }));
     setState((prev) => ({ ...prev, secondUser: secondUser }));
-  }, []);
+  }, [state.board, state.firstUser, state.messages, state.secondUser,state.tiles]);
 
   return (
     <div className={classes.root}>
