@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core/";
+import { Grid, Typography } from "@material-ui/core/";
 import { shuffleTiles, playGame } from "./domino";
 import TileCollection from "./components/TileCollection";
 import MessageLog from "./components/MessageLog";
@@ -27,7 +27,13 @@ function App() {
     );
     setState((prev) => ({ ...prev, firstUser: firstUser }));
     setState((prev) => ({ ...prev, secondUser: secondUser }));
-  }, [state.board, state.firstUser, state.messages, state.secondUser,state.tiles]);
+  }, [
+    state.board,
+    state.firstUser,
+    state.messages,
+    state.secondUser,
+    state.tiles,
+  ]);
 
   return (
     <div className={classes.root}>
@@ -40,16 +46,28 @@ function App() {
             <TileCollection tiles={state.board} title={"Board"} />
           </Grid>
           <Grid item xs={12}>
-            <TileCollection
-              tiles={state.firstUser.tiles}
-              title={state.firstUser.name}
-            />
+            {state.firstUser.tiles.length !== 0 ? (
+              <TileCollection
+                tiles={state.firstUser.tiles}
+                title={state.firstUser.name}
+              />
+            ) : (
+              <Typography color="secondary" variant="h5">
+                Winner
+              </Typography>
+            )}
           </Grid>
           <Grid item xs={12}>
-            <TileCollection
-              tiles={state.secondUser.tiles}
-              title={state.secondUser.name}
-            />
+            {state.secondUser.tiles.length !== 0 ? (
+              <TileCollection
+                tiles={state.secondUser.tiles}
+                title={state.secondUser.name}
+              />
+            ) : (
+              <Typography color="secondary" variant="h5">
+                Winner
+              </Typography>
+            )}
           </Grid>
         </Grid>
         <Grid item xs={12} sm={6}>

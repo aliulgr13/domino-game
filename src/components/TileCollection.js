@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TileCollection({ tiles, title }) {
+function TileCollection({ tiles, title, user }) {
   const classes = useStyles();
 
   return (
